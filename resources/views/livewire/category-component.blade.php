@@ -8,12 +8,19 @@
                 <th>Order</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+        <tbody wire:sortable="updateCategoryOrder">
+            @forelse ($categories as $category)
+                <tr draggable="true" wire:sortable.item="{{ $category->id }}">
+                    <td>{{ $category->id }}</td>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->order }}</td>
+                </tr>
+
+            @empty
+                <tr>
+                    <td colspan="3" style="text-align: center; vertical-align: middle;">No data available</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

@@ -87,7 +87,9 @@
             </div>
         </footer>
     </div>
-
+    
+    @livewireScripts
+    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.x/dist/livewire-sortable.js"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script>
@@ -107,7 +109,6 @@
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('dist/js/demo.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
-    @livewireScripts
 </body>
 
 </html>
