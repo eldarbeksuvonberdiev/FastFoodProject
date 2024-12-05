@@ -11,8 +11,13 @@ class CategoryComponent extends Component
     public $categories = [];
 
     //Variables for Creation
-    public $createForm = true, $name;
+    public $createForm = false, $name;
 
+    //Variables for Edit
+    public $editForm = false, $editName;
+
+
+    
     public function mount()
     {
         $this->categories();
@@ -48,5 +53,24 @@ class CategoryComponent extends Component
         ]);
         $this->reset(['createForm','name']);
         $this->categories();
+    }
+
+    public function delete(Category $category)
+    {
+        $category->delete();
+        $this->categories();    
+    }
+
+    public function editionForm(Category $category)
+    {
+        $this->editForm = $category->id;
+        $this->editName = $category->name;
+    }
+
+    public function edit()
+    {
+        Category::where('id',$this->editForm)->update(['name' => $this->editName]);
+        $this->categories();
+        $this->reset(['editForm','editName']);
     }
 }
