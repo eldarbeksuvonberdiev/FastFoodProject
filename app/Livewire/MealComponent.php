@@ -10,6 +10,7 @@ use Livewire\WithFileUploads;
 class MealComponent extends Component
 {
     use WithFileUploads;
+
     //View variables
     public $createForm = false, $products = [], $editForm = false;
 
@@ -17,7 +18,7 @@ class MealComponent extends Component
     public $category_id, $name, $price, $image, $categories = [];
 
     //Variables for edit
-    public $editCategory_id, $editName, $editPrice, $editImage;
+    public $editCategory_id, $editName, $editPrice, $editImage, $editionForm;
 
     public function mount()
     {
@@ -42,9 +43,21 @@ class MealComponent extends Component
 
     public function store()
     {
-        $filePath = $this->image->store('images','public');        
+        $filePath = $this->image->store('images', 'public');
+        // dd($filePath);
+        Meal::create([
+            'category_id' => $this->category_id,
+            'name' => $this->name,
+            'price' => $this->price,
+            'image' => $filePath
+        ]);
+        $this->reset(['createForm', 'category_id', 'name', 'price', 'image']);
+        $this->getProducts();
+    }
 
-        dd($filePath);
-
+    public function delete(Meal $meal)
+    {
+        $meal->delete();
+        $this->getProducts();
     }
 }

@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
                 'category_id' => rand(1,10),
                 'name' => 'Meal' . $i,
                 'price' => fake()->numberBetween(10000,50000),
-                'image' => 'images/' . rand(1,9),
+                'image' => 'images/' . rand(1,9) . '.jpeg',
                 'order' => rand(1,100)
             ]);
         }
