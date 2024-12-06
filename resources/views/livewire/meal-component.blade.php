@@ -7,8 +7,8 @@
                 <div class="row mb-3">
                     <div class="col-4">
                         <select class="form-select" wire:model="category_id">
-                            @foreach ($categories as $product)
-                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -46,9 +46,9 @@
                     <th>Options</th>
                 </tr>
             </thead>
-            <tbody wire:sortable="updateCategoryOrder">
-                @forelse ($products as $product)
-                    @if ($editForm == $product->id)
+            <tbody wire:sortable="updateMealOrder">
+                @forelse ($meals as $meal)
+                    @if ($editForm == $meal->id)
                         <tr>
                             <td colspan="4">
                                 <form wire:submit.prevent="edit">
@@ -65,19 +65,19 @@
                             </td>
                         </tr>
                     @else
-                        <tr draggable="true" wire:sortable.item="{{ $product->id }}">
-                            <td>{{ $product->id }}</td>
-                            <td>{{ $product->category->name }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->price }}</td>
+                        <tr draggable="true" wire:sortable.item="{{ $meal->id }}">
+                            <td>{{ $meal->id }}</td>
+                            <td>{{ $meal->category->name }}</td>
+                            <td>{{ $meal->name }}</td>
+                            <td>{{ $meal->price }}</td>
                             <td>
-                                <img src="{{ asset('storage/'. $product->image ) }}" alt="" width="100px">
+                                <img src="{{ asset('storage/'. $meal->image ) }}" alt="" width="100px">
                             </td>
-                            <td>{{ $product->order }}</td>
+                            <td>{{ $meal->order }}</td>
                             <td>
-                                <button class="btn btn-warning" wire:click="editionForm({{ $product->id }})"><i
+                                <button class="btn btn-warning" wire:click="editionForm({{ $meal->id }})"><i
                                         class="bi bi-pencil"></i></button>
-                                <button class="btn btn-danger" wire:click="delete({{ $product->id }})"><i
+                                <button class="btn btn-danger" wire:click="delete({{ $meal->id }})"><i
                                         class="bi bi-trash3"></i></button>
                             </td>
                         </tr>

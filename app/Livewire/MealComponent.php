@@ -12,7 +12,7 @@ class MealComponent extends Component
     use WithFileUploads;
 
     //View variables
-    public $createForm = false, $products = [], $editForm = false;
+    public $createForm = false, $meals = [], $editForm = false;
 
     //Variables for create
     public $category_id, $name, $price, $image, $categories = [];
@@ -27,7 +27,7 @@ class MealComponent extends Component
 
     public function getProducts()
     {
-        $this->products = Meal::orderBy('order', 'asc')->get();
+        $this->meals = Meal::orderBy('order', 'asc')->get();
         $this->categories = Category::all();
     }
 
@@ -58,6 +58,14 @@ class MealComponent extends Component
     public function delete(Meal $meal)
     {
         $meal->delete();
+        $this->getProducts();
+    }
+
+    public function updateMealOrder($mealIds)
+    {
+        foreach ($mealIds as $mealId) {
+            Meal::where('id', $mealId['value'])->update(['order' => $mealId['order']]);
+        }
         $this->getProducts();
     }
 }
