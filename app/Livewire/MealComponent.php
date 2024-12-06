@@ -22,10 +22,10 @@ class MealComponent extends Component
 
     public function mount()
     {
-        $this->getProducts();
+        $this->getMeals();
     }
 
-    public function getProducts()
+    public function getMeals()
     {
         $this->meals = Meal::orderBy('order', 'asc')->get();
         $this->categories = Category::all();
@@ -52,13 +52,13 @@ class MealComponent extends Component
             'image' => $filePath
         ]);
         $this->reset(['createForm', 'category_id', 'name', 'price', 'image']);
-        $this->getProducts();
+        $this->getMeals();
     }
 
     public function delete(Meal $meal)
     {
         $meal->delete();
-        $this->getProducts();
+        $this->getMeals();
     }
 
     public function updateMealOrder($mealIds)
@@ -66,6 +66,36 @@ class MealComponent extends Component
         foreach ($mealIds as $mealId) {
             Meal::where('id', $mealId['value'])->update(['order' => $mealId['order']]);
         }
-        $this->getProducts();
+        $this->getMeals();
+    }
+
+    public function mealEditionForm(Meal $meal)
+    {
+        $this->editForm = $meal->id;
+        $this->editCategory_id = $meal->category_id;
+        $this->editName = $meal->name;
+        $this->editPrice = $meal->price;
+        $this->image = $meal->image;
+    }
+
+    public function update()
+    {
+        if ($this->editImage) {
+            $filePath = $this->editImage->store('images', 'public');
+            Meal::where('id', $this->editForm)->update([
+                'category_id' => $this->editCategory_id,
+                'name' => $this->editName,
+                'price' => $this->editPrice,
+                'image' => $filePath
+            ]);
+        } else {
+            Meal::where('id', $this->editForm)->update([
+                'category_id' => $this->editCategory_id,
+                'name' => $this->editName,
+                'price' => $this->editPrice,
+            ]);
+        }
+        $this->reset(['editForm', 'editCategory_id', 'editName', 'editPrice', 'editImage','image']);
+        $this->getMeals();
     }
 }

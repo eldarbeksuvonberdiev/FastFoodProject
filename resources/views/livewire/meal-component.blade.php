@@ -50,15 +50,43 @@
                 @forelse ($meals as $meal)
                     @if ($editForm == $meal->id)
                         <tr>
-                            <td colspan="4">
-                                <form wire:submit.prevent="edit">
-                                    <div class="row">
-                                        <div class="col-9 offset-1">
-                                            <input type="text" wire:model="" class="form-control"
-                                                placeholder="product name">
+                            <td colspan="7">
+                                <form wire:submit.prevent="update">
+                                    <div class="row mb-3">
+                                        <div class="col-4">
+                                            <select class="form-select" wire:model="editCategory_id">
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ $editCategory_id == $category->id ? 'selected' : '' }}>
+                                                        {{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="col-1">
-                                            <button type="submit" class="btn btn-success">Store</button>
+                                        <div class="col-4">
+                                            <input type="text" wire:model="editName" class="form-control"
+                                                placeholder="Product name">
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="number" wire:model="editPrice" class="form-control"
+                                                placeholder="Prduct price">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <input type="file" wire:model="editImage" class="form-control">
+                                        </div>
+                                        <div class="col-2">
+                                            <img src="{{ asset('storage/' . $meal->image) }}" alt=""
+                                                width="100px">
+                                        </div>
+                                        @if ($editImage)
+                                            <div class="col-2">
+                                                <img src="{{ $editImage->temporaryUrl() }}" alt=""
+                                                    width="100px">
+                                            </div>
+                                        @endif
+                                        <div class="col-2">
+                                            <button type="submit" class="btn btn-success">Update</button>
                                         </div>
                                     </div>
                                 </form>
@@ -71,11 +99,11 @@
                             <td>{{ $meal->name }}</td>
                             <td>{{ $meal->price }}</td>
                             <td>
-                                <img src="{{ asset('storage/'. $meal->image ) }}" alt="" width="100px">
+                                <img src="{{ asset('storage/' . $meal->image) }}" alt="" width="100px">
                             </td>
                             <td>{{ $meal->order }}</td>
                             <td>
-                                <button class="btn btn-warning" wire:click="editionForm({{ $meal->id }})"><i
+                                <button class="btn btn-warning" wire:click="mealEditionForm({{ $meal->id }})"><i
                                         class="bi bi-pencil"></i></button>
                                 <button class="btn btn-danger" wire:click="delete({{ $meal->id }})"><i
                                         class="bi bi-trash3"></i></button>
@@ -90,5 +118,4 @@
             </tbody>
         </table>
     </div>
-
 </div>
