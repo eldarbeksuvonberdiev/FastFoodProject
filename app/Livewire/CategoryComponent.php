@@ -17,15 +17,10 @@ class CategoryComponent extends Component
     public $editForm = false, $editName;
 
 
-    
+
     public function mount()
     {
         $this->categories();
-    }
-
-    public function categories()
-    {
-        $this->categories = Category::orderBy('order','asc')->get();
     }
 
     public function render()
@@ -33,12 +28,9 @@ class CategoryComponent extends Component
         return view('livewire.category-component');
     }
 
-    public function updateCategoryOrder($categoryIds)
+    public function categories()
     {
-        foreach ($categoryIds as $categoryId) {
-            Category::where('id',$categoryId['value'])->update(['order' => $categoryId['order']]);
-        }
-        $this->categories();
+        $this->categories = Category::orderBy('order', 'asc')->get();
     }
 
     public function create()
@@ -51,14 +43,8 @@ class CategoryComponent extends Component
         Category::create([
             'name' => $this->name,
         ]);
-        $this->reset(['createForm','name']);
+        $this->reset(['createForm', 'name']);
         $this->categories();
-    }
-
-    public function delete(Category $category)
-    {
-        $category->delete();
-        $this->categories();    
     }
 
     public function editionForm(Category $category)
@@ -69,8 +55,22 @@ class CategoryComponent extends Component
 
     public function edit()
     {
-        Category::where('id',$this->editForm)->update(['name' => $this->editName]);
+        Category::where('id', $this->editForm)->update(['name' => $this->editName]);
         $this->categories();
-        $this->reset(['editForm','editName']);
+        $this->reset(['editForm', 'editName']);
+    }
+
+    public function updateCategoryOrder($categoryIds)
+    {
+        foreach ($categoryIds as $categoryId) {
+            Category::where('id', $categoryId['value'])->update(['order' => $categoryId['order']]);
+        }
+        $this->categories();
+    }
+
+    public function delete(Category $category)
+    {
+        $category->delete();
+        $this->categories();
     }
 }

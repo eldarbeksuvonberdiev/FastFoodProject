@@ -55,12 +55,6 @@ class MealComponent extends Component
         $this->getMeals();
     }
 
-    public function delete(Meal $meal)
-    {
-        $meal->delete();
-        $this->getMeals();
-    }
-
     public function updateMealOrder($mealIds)
     {
         foreach ($mealIds as $mealId) {
@@ -95,7 +89,13 @@ class MealComponent extends Component
                 'price' => $this->editPrice,
             ]);
         }
-        $this->reset(['editForm', 'editCategory_id', 'editName', 'editPrice', 'editImage','image']);
+        $this->reset(['editForm', 'editCategory_id', 'editName', 'editPrice', 'editImage', 'image']);
+        $this->getMeals();
+    }
+    
+    public function delete(Meal $meal)
+    {
+        $meal->delete();
         $this->getMeals();
     }
 }
