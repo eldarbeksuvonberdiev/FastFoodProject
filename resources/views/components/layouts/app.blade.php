@@ -65,6 +65,14 @@
                                 </span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/user-meal" wire:navigate class="nav-link">
+                                <i class="nav-icon bi bi-basket"></i>
+                                <span>
+                                    User Meal
+                                </span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
