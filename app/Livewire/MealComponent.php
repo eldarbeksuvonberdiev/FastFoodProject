@@ -74,7 +74,7 @@ class MealComponent extends Component
 
     public function update()
     {
-        if ($this->editImage) {
+        if (!empty($this->editImage)) {
             $filePath = $this->editImage->store('images', 'public');
             Meal::where('id', $this->editForm)->update([
                 'category_id' => $this->editCategory_id,

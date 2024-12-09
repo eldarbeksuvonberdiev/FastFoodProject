@@ -24,6 +24,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    @livewireStyles
 </head>
 
 <body>
@@ -65,17 +67,19 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="/user-meal" class="nav-link">All</a></li>
+                    <li class="nav-item active"><a href="/user-meal" class="nav-link" style="margin-top:20px;">All</a></li>
                     @foreach ($categories as $category)
-                        <li class="nav-item active"><a href="/byCategory/{{ $category->id }}" class="nav-link">{{ $category->name }}</a></li>
+                        <li class="nav-item active"><a href="/byCategory/{{ $category->id }}"
+                                class="nav-link" style="margin-top:20px;">{{ $category->name }}</a></li>
                     @endforeach
+                    <li class="nav-item active"><a href="/cart" class="nav-link" style="font-size: 25px;"><i class="bi bi-cart4"></i>({{ $cartCount }})</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- END nav -->
 
-    <section class="hero-wrap">
+    {{-- <section class="hero-wrap">
         <div class="home-slider owl-carousel js-fullheight">
             <div class="slider-item js-fullheight" style="background-image:url({{ asset('images/bg_1.jpg') }});">
                 <div class="overlay"></div>
@@ -107,9 +111,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <section class="ftco-section">
+    <section class="ftco-section mt-5">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-2">
                 <div class="col-md-7 text-center heading-section ftco-animate">
@@ -117,11 +121,7 @@
                     <h2 class="mb-4">Our Menu</h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    {{ $slot }}
-                </div>
-            </div>
+            {{ $slot }}
         </div>
     </section>
 
@@ -146,6 +146,7 @@
     </footer>
 
 
+    @livewireScripts
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
@@ -162,7 +163,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('js/google-map.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-
 </body>
 
 </html>

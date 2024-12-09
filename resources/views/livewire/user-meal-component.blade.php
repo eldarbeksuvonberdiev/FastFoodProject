@@ -1,49 +1,26 @@
-<div class="menu-wrap">
-    <div class="heading-menu text-center ftco-animate">
-        <h3>Breakfast</h3>
-    </div>
-    <div class="menus d-flex ftco-animate">
-        <div class="menu-img img" style="background-image: url(images/breakfast-1.jpg);"></div>
-        <div class="text">
-            <div class="d-flex">
-                <div class="one-half">
-                    <h3>Beef Roast Source</h3>
-                </div>
-                <div class="one-forth">
-                    <span class="price">$29</span>
-                </div>
-            </div>
-            <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-        </div>
-    </div>
-    <div class="menus d-flex ftco-animate">
-        <div class="menu-img img" style="background-image: url(images/breakfast-2.jpg);"></div>
-        <div class="text">
-            <div class="d-flex">
-                <div class="one-half">
-                    <h3>Beef Roast Source</h3>
-                </div>
-                <div class="one-forth">
-                    <span class="price">$29</span>
+<div class="row">
+    @foreach ($meals as $meal)
+        <div class="col-md-6 col-lg-4">
+            <div class="menu-wrap">
+                <div class="menus d-flex ftco-animate">
+                    <div class="menu-img img" style="background-image: url({{ asset('storage/' . $meal->image) }});"></div>
+                    <div class="text">
+                        <div class="d-flex">
+                            <div class="one-half">
+                                <h3>{{ $meal->name }}</h3>
+                            </div>
+                            <div class="one-forth">
+                                <span class="price">{{ $meal->price }}</span>
+                            </div>
+                        </div>
+                        <div class="one-half">
+                            <button class="btn btn-outline-danger" style="width: 100%"
+                                wire:click="addToCart({{ $meal->id }})">Add To Cart<i class="bi bi-cart3"
+                                    style="font-size: 15px;"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
         </div>
-    </div>
-    <div class="menus border-bottom-0 d-flex ftco-animate">
-        <div class="menu-img img" style="background-image: url(images/breakfast-3.jpg);"></div>
-        <div class="text">
-            <div class="d-flex">
-                <div class="one-half">
-                    <h3>Beef Roast Source</h3>
-                </div>
-                <div class="one-forth">
-                    <span class="price">$29</span>
-                </div>
-            </div>
-            <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-        </div>
-    </div>
-    <span class="flat flaticon-bread" style="left: 0;"></span>
-    <span class="flat flaticon-breakfast" style="right: 0;"></span>
+    @endforeach
 </div>
