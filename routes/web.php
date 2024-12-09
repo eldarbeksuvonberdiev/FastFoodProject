@@ -11,9 +11,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-
+//Admin routes
 Route::get('/',CategoryComponent::class);
 Route::get('/meal',MealComponent::class);
+
+
+//User routes
 Route::get('/user-meal',UserMealComponent::class);
 Route::get('/byCategory/{category}',ByCategoryComponent::class);
 Route::get('/cart',CartComponent::class);

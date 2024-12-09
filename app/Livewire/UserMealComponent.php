@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Category;
 use App\Models\Meal;
 use Illuminate\Support\Facades\View;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\Livewire;
 
@@ -14,17 +15,12 @@ class UserMealComponent extends Component
     public $categories, $meals, $cart = [], $cartCount = 0;
 
     public function mount()
-    {   
+    {
         $cart = session('cart', []);
         $this->cartCount = count($cart);
         $this->categories = Category::orderBy('order', 'asc')->limit(6)->get();
         View::share(['categories' => $this->categories, 'cartCount' => $this->cartCount]);
         $this->meals = Meal::orderBy('order', 'asc')->get();
-    }
-
-    public function render()
-    {
-        return view('livewire.user-meal-component')->layout('components.layouts.user-meal');
     }
 
     public function addToCart(Meal $meal)
@@ -44,5 +40,12 @@ class UserMealComponent extends Component
         $this->cartCount = count($cart);
         session()->put('cart', $cart);
         $this->cart = $cart;
+        return $this->redirect('/user-meal', navigate: true);
+    }
+
+    #[Layout('components.layouts.user-meal')]
+    public function render()
+    {
+        return view('livewire.user-meal-component');
     }
 }

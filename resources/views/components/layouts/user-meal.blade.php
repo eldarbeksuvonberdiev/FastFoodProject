@@ -25,6 +25,17 @@
     <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
     @livewireStyles
 </head>
 
@@ -67,56 +78,23 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="/user-meal" class="nav-link" style="margin-top:20px;">All</a></li>
+                    <li class="nav-item active"><a href="/user-meal" class="nav-link" wire:navigate style="margin-top:20px;">All</a>
+                    </li>   
                     @foreach ($categories as $category)
-                        <li class="nav-item active"><a href="/byCategory/{{ $category->id }}"
-                                class="nav-link" style="margin-top:20px;">{{ $category->name }}</a></li>
+                        <li class="nav-item active"><a href="/byCategory/{{ $category->id }}" wire:navigate class="nav-link"
+                                style="margin-top:20px;">{{ $category->name }}</a></li>
                     @endforeach
-                    <li class="nav-item active"><a href="/cart" class="nav-link" style="font-size: 25px;"><i class="bi bi-cart4"></i>({{ $cartCount }})</a></li>
+                    <li class="nav-item active"><a href="/cart" class="nav-link" wire:navigate style="font-size: 25px;"><i
+                                class="bi bi-cart4"></i>({{ $cartCount }})</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- END nav -->
-
-    {{-- <section class="hero-wrap">
-        <div class="home-slider owl-carousel js-fullheight">
-            <div class="slider-item js-fullheight" style="background-image:url({{ asset('images/bg_1.jpg') }});">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-                        <div class="col-md-12 ftco-animate">
-                            <div class="text w-100 mt-5 text-center">
-                                <span class="subheading">Taste.it Restaurant</h2></span>
-                                <h1>Cooking Since</h1>
-                                <span class="subheading-2">1958</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slider-item js-fullheight" style="background-image:url({{ asset('images/bg_2.jpg') }});">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-                        <div class="col-md-12 ftco-animate">
-                            <div class="text w-100 mt-5 text-center">
-                                <span class="subheading">Taste.it Restaurant</h2></span>
-                                <h1>Best Quality</h1>
-                                <span class="subheading-2 sub">Food</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
 
     <section class="ftco-section mt-5">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-2">
-                <div class="col-md-7 text-center heading-section ftco-animate">
+                <div class="col-md-7 text-center heading-section">
                     <span class="subheading">Specialties</span>
                     <h2 class="mb-4">Our Menu</h2>
                 </div>
@@ -146,7 +124,6 @@
     </footer>
 
 
-    @livewireScripts
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
@@ -163,6 +140,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('js/google-map.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    @livewireScripts
 </body>
 
 </html>
