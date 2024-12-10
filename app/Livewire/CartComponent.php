@@ -9,7 +9,7 @@ use Livewire\Component;
 class CartComponent extends Component
 {
     //View variables
-    public $cart, $categories, $cartCount = 0, $cartMeals;
+    public $cart, $categories, $cartCount = 0, $cartMeals, $cartSum;
 
     public function mount()
     {
@@ -29,6 +29,10 @@ class CartComponent extends Component
                 unset($cart[$id]);
             }
         }
+        $this->cartSum = 0;
+        foreach ($this->cart as $key => $value) {
+            $this->cartSum += $this->cart[$key]['quantity'] * $this->cart[$key]['price'];
+        }
         session()->put('cart', $cart);
         $this->cart = session('cart', []);
         $this->cartCount = count($this->cart);
@@ -43,6 +47,10 @@ class CartComponent extends Component
         if ($cart[$id]) {
             $cart[$id]['quantity']++;
         }
+        $this->cartSum = 0;
+        foreach ($this->cart as $key => $value) {
+            $this->cartSum += $this->cart[$key]['quantity'] * $this->cart[$key]['price'];
+        }
         session()->put('cart', $cart);
         $this->cart = session('cart', []);
         $this->cartCount = count($this->cart);
@@ -56,6 +64,10 @@ class CartComponent extends Component
         $cart = session('cart', []);
         unset($cart[$id]);
         session()->put('cart', $cart);
+        $this->cartSum = 0;
+        foreach ($this->cart as $key => $value) {
+            $this->cartSum += $this->cart[$key]['quantity'] * $this->cart[$key]['price'];
+        }
         $this->cart = session('cart', []);
         $this->cartCount = count($this->cart);
         $this->cartMeals = session('cart', []);
@@ -70,7 +82,6 @@ class CartComponent extends Component
 
     public function createOrder()
     {
-        $cart = session('cart',[]);
-        
+        $cart = session('cart', []);
     }
 }

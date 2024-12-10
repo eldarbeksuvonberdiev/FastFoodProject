@@ -96,7 +96,7 @@
             <div class="row justify-content-center mb-5 pb-2">
                 <div class="col-md-7 text-center heading-section">
                     <span class="subheading">Specialties</span>
-                    <h2 class="mb-4">Our Menu</h2>
+                    <h2 class="mb-4">{{ request()->path() !== "cart" ? "Our Menu" : "Your cart"  }}</h2>
                 </div>
             </div>
             {{ $slot }}
