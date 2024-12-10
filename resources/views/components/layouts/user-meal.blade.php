@@ -78,13 +78,15 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="/user-meal" class="nav-link"  style="margin-top:20px;">All</a>
-                    </li>   
+                    <li class="nav-item active"><a href="/meal" class="nav-link" style="margin-top:20px;">Meal</a>
+                    </li>
+                    <li class="nav-item active"><a href="/user-meal" class="nav-link" style="margin-top:20px;">All</a>
+                    </li>
                     @foreach ($categories as $category)
                         <li class="nav-item active"><a href="/byCategory/{{ $category->id }}" class="nav-link"
                                 style="margin-top:20px;">{{ $category->name }}</a></li>
                     @endforeach
-                    <li class="nav-item active"><a href="/cart" class="nav-link"  style="font-size: 25px;"><i
+                    <li class="nav-item active"><a href="/cart" class="nav-link" style="font-size: 25px;"><i
                                 class="bi bi-cart4"></i>({{ $cartCount }})</a></li>
                 </ul>
             </div>
@@ -96,7 +98,7 @@
             <div class="row justify-content-center mb-5 pb-2">
                 <div class="col-md-7 text-center heading-section">
                     <span class="subheading">Specialties</span>
-                    <h2 class="mb-4">{{ request()->path() !== "cart" ? "Our Menu" : "Your cart"  }}</h2>
+                    <h2 class="mb-4">{{ request()->path() !== 'cart' ? 'Our Menu' : 'Your cart' }}</h2>
                 </div>
             </div>
             {{ $slot }}

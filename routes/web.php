@@ -4,6 +4,7 @@ use App\Livewire\ByCategoryComponent;
 use App\Livewire\CartComponent;
 use App\Livewire\CategoryComponent;
 use App\Livewire\MealComponent;
+use App\Livewire\OrderComponent;
 use App\Livewire\UserMealComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 //Admin routes
 Route::get('/',CategoryComponent::class);
 Route::get('/meal',MealComponent::class);
+Route::get('/order',OrderComponent::class);
 
 
 //User routes
