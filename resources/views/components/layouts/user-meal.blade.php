@@ -78,13 +78,13 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="/user-meal" class="nav-link" wire:navigate style="margin-top:20px;">All</a>
+                    <li class="nav-item active"><a href="/user-meal" class="nav-link"  style="margin-top:20px;">All</a>
                     </li>   
                     @foreach ($categories as $category)
-                        <li class="nav-item active"><a href="/byCategory/{{ $category->id }}" wire:navigate class="nav-link"
+                        <li class="nav-item active"><a href="/byCategory/{{ $category->id }}" class="nav-link"
                                 style="margin-top:20px;">{{ $category->name }}</a></li>
                     @endforeach
-                    <li class="nav-item active"><a href="/cart" class="nav-link" wire:navigate style="font-size: 25px;"><i
+                    <li class="nav-item active"><a href="/cart" class="nav-link"  style="font-size: 25px;"><i
                                 class="bi bi-cart4"></i>({{ $cartCount }})</a></li>
                 </ul>
             </div>

@@ -15,7 +15,7 @@
                                     <h3>{{ $meal->name }}</h3>
                                 </div>
                                 <div class="one-forth">
-                                    <span class="price">{{ $meal->price }}</span>
+                                    <span class="price">{{ number_format($meal->price) }}</span>
                                 </div>
                             </div>
                             <div class="one-half">

@@ -25,6 +25,8 @@ class UserMealComponent extends Component
 
     public function addToCart(Meal $meal)
     {
+
+        
         $cart = session('cart', []);
 
         if (isset($cart[$meal->id])) {
@@ -40,12 +42,18 @@ class UserMealComponent extends Component
         $this->cartCount = count($cart);
         session()->put('cart', $cart);
         $this->cart = $cart;
-        return $this->redirect('/user-meal', navigate: true);
+        return $this->redirect('/user-meal');
     }
 
     #[Layout('components.layouts.user-meal')]
     public function render()
     {
+        $cart = session('cart', []);
+
+        $this->cartCount = count($cart);
+        $this->categories = Category::orderBy('order', 'asc')->limit(6)->get();
+        View::share(['categories' => $this->categories, 'cartCount' => $this->cartCount]);
+        $this->meals = Meal::orderBy('order', 'asc')->get();
         return view('livewire.user-meal-component');
     }
 }
