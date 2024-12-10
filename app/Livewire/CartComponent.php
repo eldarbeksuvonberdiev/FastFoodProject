@@ -3,6 +3,9 @@
 namespace App\Livewire;
 
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
 use Livewire\Component;
 
@@ -29,10 +32,6 @@ class CartComponent extends Component
                 unset($cart[$id]);
             }
         }
-        $this->cartSum = 0;
-        foreach ($this->cart as $key => $value) {
-            $this->cartSum += $this->cart[$key]['quantity'] * $this->cart[$key]['price'];
-        }
         session()->put('cart', $cart);
         $this->cart = session('cart', []);
         $this->cartCount = count($this->cart);
@@ -47,10 +46,6 @@ class CartComponent extends Component
         if ($cart[$id]) {
             $cart[$id]['quantity']++;
         }
-        $this->cartSum = 0;
-        foreach ($this->cart as $key => $value) {
-            $this->cartSum += $this->cart[$key]['quantity'] * $this->cart[$key]['price'];
-        }
         session()->put('cart', $cart);
         $this->cart = session('cart', []);
         $this->cartCount = count($this->cart);
@@ -64,10 +59,35 @@ class CartComponent extends Component
         $cart = session('cart', []);
         unset($cart[$id]);
         session()->put('cart', $cart);
-        $this->cartSum = 0;
-        foreach ($this->cart as $key => $value) {
-            $this->cartSum += $this->cart[$key]['quantity'] * $this->cart[$key]['price'];
+        $this->cart = session('cart', []);
+        $this->cartCount = count($this->cart);
+        $this->cartMeals = session('cart', []);
+        $this->categories = Category::orderBy('order', 'asc')->limit(6)->get();
+        View::share(['categories' => $this->categories, 'cartCount' => $this->cartCount]);
+    }
+
+    public function createOrder()
+    {
+        $cart = session('cart', []);
+        foreach ($cart as $key => $value) {
+            $this->cartSum += $value['quantity'] * $value['price'];
         }
+        $date = Carbon::now()->format('Y-m-d');
+        $queue = Order::where('date',$date)->count();
+        $order = Order::create([
+            'date' => $date,
+            'queue' => ++$queue,
+            'sum' => $this->cartSum
+        ]);
+        foreach ($cart as $key => $value) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'meal_id' => $key,
+                'count' => $value['quantity'],
+                'total_price' => $value['quantity'] * $value['price']
+            ]);
+        }
+        session()->flush();
         $this->cart = session('cart', []);
         $this->cartCount = count($this->cart);
         $this->cartMeals = session('cart', []);
@@ -78,10 +98,5 @@ class CartComponent extends Component
     public function render()
     {
         return view('livewire.cart-component')->layout('components.layouts.user-meal');
-    }
-
-    public function createOrder()
-    {
-        $cart = session('cart', []);
     }
 }
