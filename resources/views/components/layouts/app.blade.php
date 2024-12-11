@@ -78,6 +78,30 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/user" wire:navigate class="nav-link">
+                                <i class="bi bi-people"></i>
+                                <span>
+                                    Users
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/department" wire:navigate class="nav-link">
+                                <i class="bi bi-person-check"></i>
+                                <span>
+                                    Departments
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/employee" wire:navigate class="nav-link">
+                                <i class="bi bi-person-badge"></i>
+                                <span>
+                                    Employees
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/user-meal" wire:navigate class="nav-link">
                                 <i class="nav-icon bi bi-basket"></i>
                                 <span>
