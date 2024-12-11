@@ -20,7 +20,7 @@ class OrderComponent extends Component
     public function allOrders()
     {
         $this->givenOrders = Order::orderBy('id', 'desc')->get();
-        $this->inProgressOrders = Order::where('status', 2)->orderBy('id', 'desc')->get();
+        $this->inProgressOrders = Order::whereIn('status', [1,2])->orderBy('id', 'desc')->get();
         $this->doneOrders = Order::where('status', 3)->orderBy('id', 'desc')->get();
         $this->cateredOrders = Order::where('status', 4)->orderBy('id', 'desc')->get();
     }
@@ -48,5 +48,11 @@ class OrderComponent extends Component
     public function render()
     {
         return view('livewire.order-component');
+    }
+
+    public function cater(Order $order)
+    {
+        $order->update(['status' => 4]);
+        $this->allOrders();
     }
 }

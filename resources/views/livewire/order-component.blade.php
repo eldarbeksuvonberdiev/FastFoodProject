@@ -24,7 +24,7 @@
                                 <div class="card-header">
                                     <h5 class="card-title">Order {{ $givenOrder->id }} {!! $givenOrder->status == '3' ? "<span class='text-danger'>Ready</span>" : '' !!}</h5>
                                     <div class="card-tools">
-                                        <a class="btn btn-info" data-bs-toggle="collapse"
+                                        <a class="btn btn-secondary" data-bs-toggle="collapse"
                                             href="#info{{ $givenOrder->id }}" role="button" aria-expanded="false"
                                             aria-controls="multiCollapseExample1"><i class="bi bi-pencil"></i></a>
                                     </div>
@@ -35,10 +35,9 @@
                                             <div class="card card-body">
                                                 @if ($givenOrder->orderItems->count() > 0)
                                                     <div class="form-check">
-                                                        <input class="form-check-input"
-                                                            wire:click="orderReady({{ $givenOrder->id }})"
-                                                            type="checkbox" value="" id="orderItem"
-                                                            {{ $givenOrder->status == '3' ? 'checked disabled' : '' }}>
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="orderItem"
+                                                            {{ $givenOrder->status == '3' ? 'checked' : '' }} disabled>
                                                         <label class="form-check-label" for="orderItem">
                                                             Order Ready
                                                         </label>
@@ -46,11 +45,9 @@
                                                 @endif
                                                 @forelse ($givenOrder->orderItems as $orderItem)
                                                     <div class="form-check">
-                                                        <input class="form-check-input"
-                                                            wire:click="changeStatus({{ $givenOrder }},{{ $orderItem->id }}, '3')"
-                                                            type="checkbox" value=""
+                                                        <input class="form-check-input" type="checkbox" value=""
                                                             id="orderItem{{ $orderItem->id }}"
-                                                            {{ $orderItem->status == '3' ? 'checked disabled' : '' }}>
+                                                            {{ $orderItem->status == '3' ? 'checked' : '' }} disabled>
                                                         <label class="form-check-label"
                                                             for="orderItem{{ $orderItem->id }}">
                                                             {{ $orderItem->meal->name . ' x ' . $orderItem->count }}
@@ -80,17 +77,58 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <h5 class="card-title">Create first milestone</h5>
-                                <div class="card-tools">
-                                    <a href="#" class="btn btn-tool btn-link">#5</a>
-                                    <a href="#" class="btn btn-tool">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
+                        @forelse ($inProgressOrders as $inProgressOrder)
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <h5 class="card-title">Order {{ $inProgressOrder->id }}</h5>
+                                    <div class="card-tools">
+                                        <a class="btn btn-primary" data-bs-toggle="collapse"
+                                            href="#item{{ $inProgressOrder->id }}" role="button" aria-expanded="false"
+                                            aria-controls="multiCollapseExample1"><i class="bi bi-pencil"></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="collapse multi-collapse" id="item{{ $inProgressOrder->id }}">
+                                            <div class="card card-body">
+                                                @if ($inProgressOrder->orderItems->count() > 0)
+                                                    <div class="form-check">
+                                                        <input class="form-check-input"
+                                                            wire:click="orderReady({{ $inProgressOrder->id }})"
+                                                            type="checkbox" value="" id="orderItem"
+                                                            {{ $inProgressOrder->status == '3' ? 'checked disabled' : '' }}>
+                                                        <label class="form-check-label" for="orderItem">
+                                                            Order Ready
+                                                        </label>
+                                                    </div>
+                                                @endif
+                                                @forelse ($inProgressOrder->orderItems as $orderItem)
+                                                    <div class="form-check">
+                                                        <input class="form-check-input"
+                                                            wire:click="changeStatus({{ $inProgressOrder }},{{ $orderItem->id }}, '3')"
+                                                            type="checkbox" value=""
+                                                            id="orderItem{{ $orderItem->id }}"
+                                                            {{ $orderItem->status == '3' ? 'checked disabled' : '' }}>
+                                                        <label class="form-check-label"
+                                                            for="orderItem{{ $orderItem->id }}">
+                                                            {{ $orderItem->meal->name . ' x ' . $orderItem->count }}
+                                                        </label>
+                                                    </div>
+                                                @empty
+                                                    This order has no items
+                                                @endforelse
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @empty
+                            <div class="card card-info card-outline">
+                                <div class="card-header">
+                                    <h5 class="card-title">No Orders are here yet</h5>
+                                </div>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
                 <div class="card card-row card-default">
@@ -100,25 +138,24 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <div class="card card-light card-outline">
-                            <div class="card-header">
-                                <h5 class="card-title">Update Readme</h5>
-                                <div class="card-tools">
-                                    <a href="#" class="btn btn-tool btn-link">#2</a>
-                                    <a href="#" class="btn btn-tool">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
+                        @forelse ($doneOrders as $doneOrder)
+                            <div class="card card-light card-outline">
+                                <div class="card-header">
+                                    <h5 class="card-title">Order {{ $doneOrder->id }} <span
+                                            class="text-success">Ready</span> </h5>
+                                    <div class="card-tools">
+                                        <a class="btn btn-info" wire:click="cater({{ $doneOrder->id }})"
+                                            aria-expanded="false"><i class="bi bi-pencil"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                    Aenean commodo ligula eget dolor. Aenean massa.
-                                    Cum sociis natoque penatibus et magnis dis parturient montes,
-                                    nascetur ridiculus mus.
-                                </p>
+                        @empty
+                            <div class="card card-info card-outline">
+                                <div class="card-header">
+                                    <h5 class="card-title">No Orders ready</h5>
+                                </div>
                             </div>
-                        </div>
+                        @endforelse
                     </div>
                 </div>
                 <div class="card card-row card-success">
@@ -128,17 +165,17 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <h5 class="card-title">Create repo</h5>
-                                <div class="card-tools">
-                                    <a href="#" class="btn btn-tool btn-link">#1</a>
-                                    <a href="#" class="btn btn-tool">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
+                        @forelse ($cateredOrders as $cateredOrder)
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <h5 class="card-title">Order {{ $cateredOrder->id }}</h5>
+                                    <div class="card-tools">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @empty
+                        @endforelse
                     </div>
                 </div>
             </div>
