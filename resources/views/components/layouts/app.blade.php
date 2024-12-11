@@ -71,7 +71,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="/order" wire:navigate class="nav-link">
-                                <i class="nav-icon bi bi-basket"></i>
+                                <i class="bi bi-cart4"></i>
                                 <span>
                                     Orders
                                 </span>

@@ -37,7 +37,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="orderItem"
-                                                            {{ $givenOrder->status == '3' ? 'checked' : '' }} disabled>
+                                                            {{ in_array($givenOrder->status,[3,4]) ? 'checked' : '' }} disabled>
                                                         <label class="form-check-label" for="orderItem">
                                                             Order Ready
                                                         </label>
