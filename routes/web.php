@@ -1,14 +1,14 @@
 <?php
 
-use App\Livewire\ByCategoryComponent;
-use App\Livewire\CartComponent;
-use App\Livewire\CategoryComponent;
-use App\Livewire\DepartmentComponent;
-use App\Livewire\EmployeeComponent;
-use App\Livewire\MealComponent;
-use App\Livewire\OrderComponent;
-use App\Livewire\UserComponent;
-use App\Livewire\UserMealComponent;
+use App\Livewire\User\ByCategoryComponent;
+use App\Livewire\User\CartComponent;
+use App\Livewire\Admin\CategoryComponent;
+use App\Livewire\Admin\DepartmentComponent;
+use App\Livewire\Admin\EmployeeComponent;
+use App\Livewire\Admin\MealComponent;
+use App\Livewire\Admin\OrderComponent;
+use App\Livewire\Admin\UserComponent;
+use App\Livewire\User\UserMealComponent;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {

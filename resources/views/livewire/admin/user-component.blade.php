@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-12 mt-3">
                         <h2><strong>Users</strong></h2>
-                        {{-- <button class="btn btn-primary mt-2 mb-3"
+                        <button class="btn btn-primary mt-2 mb-3"
                             wire:click="create">{{ $createForm ? 'Back' : 'Create' }}</button>
                         @if ($createForm)
                             <form wire:submit.prevent="store">
@@ -19,7 +19,7 @@
                                     </div>
                                 </div>
                             </form>
-                        @endif --}}
+                        @endif
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
