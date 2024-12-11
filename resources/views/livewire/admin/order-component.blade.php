@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-body">
                         @forelse ($givenOrders as $givenOrder)
-                            <div class="card card-info card-outline">
+                            <div class="card card-secondary card-outline">
                                 <div class="card-header">
                                     <h5 class="card-title">Order {{ $givenOrder->id }} {!! $givenOrder->status == '3' ? "<span class='text-danger'>Ready</span>" : '' !!}</h5>
                                     <div class="card-tools">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="card card-info card-outline">
+                            <div class="card card-secondary card-outline">
                                 <div class="card-header">
                                     <h5 class="card-title">No Orders are here yet</h5>
                                 </div>
@@ -123,7 +123,7 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="card card-info card-outline">
+                            <div class="card card-primary card-outline">
                                 <div class="card-header">
                                     <h5 class="card-title">No Orders are here yet</h5>
                                 </div>
@@ -166,7 +166,7 @@
                     </div>
                     <div class="card-body">
                         @forelse ($cateredOrders as $cateredOrder)
-                            <div class="card card-primary card-outline">
+                            <div class="card card-success card-outline">
                                 <div class="card-header">
                                     <h5 class="card-title">Order {{ $cateredOrder->id }}</h5>
                                     <div class="card-tools">

@@ -8,6 +8,6 @@ class EmployeeComponent extends Component
 {
     public function render()
     {
-        return view('livewire.employee-component');
+        return view('livewire.admin.employee-component');
     }
 }

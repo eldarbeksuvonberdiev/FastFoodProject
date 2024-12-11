@@ -47,7 +47,7 @@ class OrderComponent extends Component
 
     public function render()
     {
-        return view('livewire.order-component');
+        return view('livewire.admin.order-component');
     }
 
     public function cater(Order $order)

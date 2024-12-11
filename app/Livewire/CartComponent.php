@@ -97,6 +97,6 @@ class CartComponent extends Component
 
     public function render()
     {
-        return view('livewire.cart-component')->layout('components.layouts.user-meal');
+        return view('livewire.user.cart-component')->layout('components.layouts.user-meal');
     }
 }

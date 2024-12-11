@@ -33,7 +33,7 @@ class MealComponent extends Component
 
     public function render()
     {
-        return view('livewire.meal-component');
+        return view('livewire.admin.meal-component');
     }
 
     public function create()

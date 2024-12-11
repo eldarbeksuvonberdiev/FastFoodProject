@@ -54,6 +54,6 @@ class UserMealComponent extends Component
         $this->categories = Category::orderBy('order', 'asc')->limit(6)->get();
         View::share(['categories' => $this->categories, 'cartCount' => $this->cartCount]);
         $this->meals = Meal::orderBy('order', 'asc')->get();
-        return view('livewire.user-meal-component');
+        return view('livewire.user.user-meal-component');
     }
 }

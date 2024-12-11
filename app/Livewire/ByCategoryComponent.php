@@ -26,6 +26,6 @@ class ByCategoryComponent extends Component
     #[Layout('components.layouts.user-meal')]
     public function render()
     {
-        return view('livewire.by-category-component');
+        return view('livewire.user.by-category-component');
     }
 }

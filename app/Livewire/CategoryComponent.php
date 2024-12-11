@@ -25,7 +25,7 @@ class CategoryComponent extends Component
 
     public function render()
     {
-        return view('livewire.category-component');
+        return view('livewire.admin.category-component');
     }
 
     public function categories()

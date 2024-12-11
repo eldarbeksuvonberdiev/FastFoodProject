@@ -30,7 +30,7 @@ class DepartmentComponent extends Component
 
     public function render()
     {
-        return view('livewire.department-component');
+        return view('livewire.admin.department-component');
     }
 
     public function storeDepartment()
