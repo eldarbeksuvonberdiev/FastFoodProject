@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
@@ -11,87 +12,25 @@ class EmployeeComponent extends Component
 {
     use WithFileUploads;
     //view variables
-    public $createForm = false, $name, $phone, $role, $password, $image, $users;
-
-    public $editForm = false, $editName, $editPhone, $editRole, $editPassword, $editImage;
+    public $employees = [];
     public function mount()
     {
-        $this->getAllUsers();
+        $this->getAllEmployee();
     }
 
     public function render()
     {
-        return view('livewire.admin.user-component');
+        return view('livewire.admin.employee-component');
     }
 
-    public function getAllUsers()
+    public function getAllEmployee()
     {
-        $this->users = User::all();
+        $this->employees = Employee::all();
     }
 
-    public function create()
+    public function deleteEmployee(Employee $employee)
     {
-        $this->createForm = !$this->createForm;
-    }
-
-    public function storeUser()
-    {
-        $image = $this->image->store('images', 'public');
-        User::create([
-            'name' => $this->name,
-            'role' => $this->role,
-            'phone' => $this->phone,
-            'image' => $image,
-            'password' => Hash::make($this->password)
-        ]);
-        $this->getAllUsers();
-        $this->reset(['name', 'createForm', 'password', 'role', 'phone', 'image']);
-    }
-
-    public function editUser(User $user)
-    {
-        $this->editForm = $user->id;
-        $this->editName = $user->name;
-        $this->editPhone = $user->phone;
-        $this->editRole = $user->role;
-        $this->image = $user->image;;
-    }
-
-    public function updateUser()
-    {
-        // dd($this->editName, $this->editPhone, $this->editRole,);
-        if (empty($this->editPassword) && empty($this->editImage)) {
-            $data = [
-                'name' => $this->editName,
-                'phone' => $this->editPhone,
-                'role' => $this->editRole
-            ];
-        } elseif (!empty($this->editImage) && empty($this->editPassword)) {
-            $image = $this->editImage->store('images', 'public');
-            $data = [
-                'name' => $this->editName,
-                'phone' => $this->editPhone,
-                'role' => $this->editRole,
-                'image' => $image
-            ];
-        } elseif (empty($this->editImage) && !empty($this->editPassword)) {
-            // $image = $this->image->store('images', 'public');
-            $data = [
-                'name' => $this->editName,
-                'phone' => $this->editPhone,
-                'role' => $this->editRole,
-                'password' => Hash::make($this->editPassword)
-            ];
-        }
-
-        User::where('id', $this->editForm)->update($data);
-        $this->reset(['editForm', 'editName', 'editPhone', 'editRole', 'image', 'editImage']);
-        $this->getAllUsers();
-    }
-
-    public function deleteUser(User $user)
-    {
-        $user->delete();
-        $this->getAllUsers();
+        $employee->delete();
+        $this->getAllEmployee();
     }
 }

@@ -17,4 +17,15 @@ class Employee extends Model
         'end_time',
         'overall_work',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
 }

@@ -123,6 +123,19 @@
     </div>
 
     @livewireScripts
+    <script>
+        document.getElementById('dateInput').addEventListener('click', function() {
+            this.showPicker(); // Kalendarni ochadi
+        });
+
+        document.getElementById('timeInput1').addEventListener('click', function() {
+            this.showPicker(); // Vaqt tanlash oynasini ochadi
+        });
+        
+        document.getElementById('timeInput2').addEventListener('click', function() {
+            this.showPicker(); // Vaqt tanlash oynasini ochadi
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.x/dist/livewire-sortable.js"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
