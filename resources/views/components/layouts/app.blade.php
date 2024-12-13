@@ -107,13 +107,23 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/logout" class="nav-link">
-                                <i class="bi bi-box-arrow-right" style="color: red;"></i>
+                            <a href="/attendance" wire:navigate class="nav-link">
+                                <i class="bi bi-card-checklist"></i>
                                 <span>
-                                    Log Out
+                                    Attendance
                                 </span>
                             </a>
                         </li>
+                        @if (auth()->check())
+                            <li class="nav-item">
+                                <a href="/logout" class="nav-link">
+                                    <i class="bi bi-box-arrow-right" style="color: red;"></i>
+                                    <span>
+                                        Log Out
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </nav>
             </div>
@@ -139,7 +149,7 @@
         document.getElementById('timeInput1').addEventListener('click', function() {
             this.showPicker(); // Vaqt tanlash oynasini ochadi
         });
-        
+
         document.getElementById('timeInput2').addEventListener('click', function() {
             this.showPicker(); // Vaqt tanlash oynasini ochadi
         });

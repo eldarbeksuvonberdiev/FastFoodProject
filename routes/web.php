@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\LoginController;
+use App\Livewire\Admin\AttendanceComponent;
 use App\Livewire\User\ByCategoryComponent;
 use App\Livewire\User\CartComponent;
 use App\Livewire\Admin\CategoryComponent;
@@ -22,25 +22,26 @@ use Illuminate\Support\Facades\Route;
 
 //Admin routes
 // Route::middleware('check:admin')->group(function () {
-    Route::get('/', CategoryComponent::class)->name('category');
-    Route::get('/meal', MealComponent::class)->name('meal');
-    Route::get('/order', OrderComponent::class)->name('order');
-    Route::get('/user', UserComponent::class)->name('user');
-    Route::get('/department', DepartmentComponent::class)->name('department');
-    Route::get('/employee', EmployeeComponent::class)->name('employee');
-    Route::get('/employee-create', EmployeeCreateComponent::class)->name('employee-create');
-    Route::get('/employee-edit/{employee}', EditEmployeeComponent::class)->name('employee-edit');
+Route::get('/', CategoryComponent::class)->name('category');
+Route::get('/meal', MealComponent::class)->name('meal');
+Route::get('/order', OrderComponent::class)->name('order');
+Route::get('/user', UserComponent::class)->name('user');
+Route::get('/department', DepartmentComponent::class)->name('department');
+Route::get('/employee', EmployeeComponent::class)->name('employee');
+Route::get('/attendance', AttendanceComponent::class)->name('attendance');
+Route::get('/employee-create', EmployeeCreateComponent::class)->name('employee-create');
+Route::get('/employee-edit/{employee}', EditEmployeeComponent::class)->name('employee-edit');
 // });
 
 
 //User routes
 // Route::middleware('check:user')->group(function () {
-    Route::get('/user-meal', UserMealComponent::class);
-    Route::get('/byCategory/{category}', ByCategoryComponent::class);
-    Route::get('/cart', CartComponent::class);
+Route::get('/user-meal', UserMealComponent::class);
+Route::get('/byCategory/{category}', ByCategoryComponent::class);
+Route::get('/cart', CartComponent::class);
 // });
 
 //Login
 
-Route::get('/login',AuthComponent::class)->name('login');
-Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+Route::get('/login', AuthComponent::class)->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

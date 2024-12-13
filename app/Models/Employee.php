@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
@@ -28,4 +29,13 @@ class Employee extends Model
         return $this->belongsTo(Department::class);
     }
 
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    public function checks($date)
+    {
+        return $this->attendances()->where('date', Carbon::parse($date))->first();
+    }
 }
