@@ -17,7 +17,9 @@ class AuthComponent extends Component
     public function loginCheck()
     {
         if (Auth::attempt(['phone' => $this->phone, 'password' => $this->password])) {
-            
+            if (Auth::user() && Auth::user()->role !== 'admin') {
+                
+            }
         }
     }
 }
