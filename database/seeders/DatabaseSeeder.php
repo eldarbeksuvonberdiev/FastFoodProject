@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
                 'name' => fake()->name(),
                 'password' => Hash::make(123456),
                 'phone' => '998941234' . rand(100,999),
-                'image' => 'images/' . rand(1,6) . 'jpeg'
+                'image' => 'images/' . rand(1,6) . '.jpeg'
             ]);
         }
 
@@ -55,9 +55,9 @@ class DatabaseSeeder extends Seeder
             Department::create(['name' => 'Name' . $i]);
         }
 
-        for ($i=1; $i <= 10; $i++) { 
+        for ($i=1; $i <= 5; $i++) { 
             Employee::create([
-                'user_id' => rand(1,5),
+                'user_id' => $i % 5 !== 0 ? $i % 5 : 5,
                 'department_id' => rand(1,5),
                 'salary_type' => 'fixed',
                 'salary_amount' => rand(1000000,156161651),
@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
 
         for ($i=1; $i <= 10; $i++) { 
             Attendance::create([
-                'employee_id' => rand(1,10),
+                'employee_id' => rand(1,5),
                 'user_id' => rand(1,5),
                 'date' => '2024-10-' . rand(01,31),
                 'start_time' => '07:56',
