@@ -38,7 +38,7 @@
         </nav>
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="#" class="brand-link">
+            <a href="#" class="brand-link" style="text-decoration: none;">
                 <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: 2">
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -103,6 +103,14 @@
                                 <i class="nav-icon bi bi-basket"></i>
                                 <span>
                                     User Meal
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>
+                                    Log Out
                                 </span>
                             </a>
                         </li>

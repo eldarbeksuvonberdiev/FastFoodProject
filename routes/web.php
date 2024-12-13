@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Livewire\User\ByCategoryComponent;
 use App\Livewire\User\CartComponent;
@@ -42,3 +43,4 @@ use Illuminate\Support\Facades\Route;
 //Login
 
 Route::get('/login',AuthComponent::class)->name('login');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');

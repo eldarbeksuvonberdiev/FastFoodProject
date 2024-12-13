@@ -24,7 +24,7 @@ class AuthComponent extends Component
                     'employee_id' => Auth::user()->employee->id,
                     'user_id' => Auth::user()->id,
                     'date' => Carbon::now()->format('Y-m-d'),
-                    'start_time' => Carbon::now()->format('H:i')
+                    'start_time' => Carbon::now()->format('H:i:s')
                 ]);
                 return redirect()->route('category');
             }
