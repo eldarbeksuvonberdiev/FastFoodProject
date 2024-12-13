@@ -27,18 +27,34 @@
                                             @php
                                                 $userAttendance = $employee->checks($day->format('Y-m-d'));
                                             @endphp
-                                            {{-- <td wire:click="inputView('{{ $student->id }}','{{ $day->format('Y-m-d') }}')">
-                                                @if ($talabaId == $student->id && $attendanceDate == $day->format('Y-m-d'))
-                                                    <input type="text" style="width: 30px;" autofocus
-                                                        value="{{ $userAttendance->value ?? '' }}"
-                                                        wire:keydown.enter="createAttendance('{{ $student->id }}','{{ $day->format('Y-m-d') }}',$event.target.value)">
-                                                @else
-                                                    @if ($userAttendance)
-                                                        <span
-                                                            class="text-{{ $userAttendance->value == '+' ? 'primary' : 'danger' }}">{{ $userAttendance->value }}</span>
-                                                    @endif
+                                            <td>
+                                                @if ($userAttendance)
+                                                    @php
+                                                        $employeeStartTime = \Carbon\Carbon::parse(
+                                                            $employee->start_time,
+                                                        );
+                                                        $employeeEndTime = \Carbon\Carbon::parse($employee->end_time);
+                                                        $attendanceStartTime = \Carbon\Carbon::parse(
+                                                            $userAttendance->start_time,
+                                                        );
+                                                        $attendanceEndTime = \Carbon\Carbon::parse(
+                                                            $userAttendance->end_time,
+                                                        );
+
+                                                        $startTimeMatches = $employeeStartTime->greaterThan(
+                                                            $attendanceStartTime,
+                                                        );
+                                                        $endTimeMatches = $employeeEndTime->lessThan(
+                                                            $attendanceEndTime,
+                                                        );
+                                                        @endphp
+
+                                                    <span
+                                                        class="text-{{ $startTimeMatches && $endTimeMatches ? 'danger' : 'info' }} btn btn-{{ $startTimeMatches && $endTimeMatches ? 'primary' : 'danger' }}">
+                                                        {{ $startTimeMatches && $endTimeMatches ? '+' : '-' }}
+                                                    </span>
                                                 @endif
-                                            </td> --}}
+                                            </td>
                                         @endforeach
                                     </tr>
                                 @empty

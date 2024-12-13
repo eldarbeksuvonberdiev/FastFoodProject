@@ -36,6 +36,7 @@ class Employee extends Model
 
     public function checks($date)
     {
+        // dd($this->attendances()->where('date', Carbon::parse($date))->first());
         return $this->attendances()->where('date', Carbon::parse($date))->first();
     }
 }
