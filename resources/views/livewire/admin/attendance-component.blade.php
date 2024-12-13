@@ -47,12 +47,19 @@
                                                         $endTimeMatches = $employeeEndTime->lessThan(
                                                             $attendanceEndTime,
                                                         );
-                                                        @endphp
+                                                        // dd($employee);
+                                                    @endphp
 
-                                                    <span
+                                                    <a title="Work start time: {{ $userAttendance->start_time }}, end time: {{ $userAttendance->end_time }} and overall work time in hours: {{ \Carbon\Carbon::parse($userAttendance->overall_time)->format('H:i:s') }}"
+                                                        
+                                                        wire:navigate href="/attendance-edit/{{ $userAttendance->id }}"
+                                                        
+                                                        style="width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;padding: 0;box-sizing: border-box;"
+                                                        
                                                         class="text-{{ $startTimeMatches && $endTimeMatches ? 'danger' : 'info' }} btn btn-{{ $startTimeMatches && $endTimeMatches ? 'primary' : 'danger' }}">
+
                                                         {{ $startTimeMatches && $endTimeMatches ? '+' : '-' }}
-                                                    </span>
+                                                    </a>
                                                 @endif
                                             </td>
                                         @endforeach
