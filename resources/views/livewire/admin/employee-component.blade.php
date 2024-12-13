@@ -13,7 +13,7 @@
                                     <th>Name</th>
                                     <th>Department</th>
                                     <th>Salary Type</th>
-                                    <th>Saladry Amount</th>
+                                    <th>Salary Amount</th>
                                     <th>Bonus</th>
                                     <th>Salary Date</th>
                                     <th>Start time</th>
