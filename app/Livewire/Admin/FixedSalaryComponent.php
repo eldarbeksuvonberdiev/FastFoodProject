@@ -10,10 +10,11 @@ use Livewire\Component;
 class FixedSalaryComponent extends Component
 {
     //view variables
-    public $employees = [], $workTimes = [], $month, $year;
+    public $employees = [], $workTimes = [], $month, $year, $date;
 
     public function mount()
     {
+        $this->date = now();
         $this->month = now()->format('m');
         $this->year = now()->format('Y');
 
@@ -49,6 +50,7 @@ class FixedSalaryComponent extends Component
 
     public function selectDate($date)
     {
+        $this->date = Carbon::parse($date);
         $this->month = Carbon::parse($date)->format('m');
         $this->year = Carbon::parse($date)->format('Y');
         $this->employees = Employee::all();

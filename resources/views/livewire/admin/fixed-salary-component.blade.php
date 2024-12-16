@@ -7,13 +7,16 @@
                         <h2><strong>Fixed Salary</strong></h2>
                         <input type="date" class="form-control mt-3 mb-3" id="dateInput" name=""
                             wire:change="selectDate($event.target.value)">
+                        <h4 class="text-primary mt-2 mb-2">Salary of {{ $date->format('F Y') }}</h4>
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Salary amount(custom)</th>
+                                    <th>Work hours(custom)</th>
                                     <th>Total Work Hours</th>
-                                    <th>Salary amount</th>
+                                    <th>Salary amount(In this month)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -21,6 +24,8 @@
                                     <tr>
                                         <td>{{ $employee->id }}</td>
                                         <td>{{ $employee->user->name }}</td>
+                                        <td>{{ number_format($employee->salary_amount) }}</td>
+                                        <td>{{ $employee->overall_work }}</td>
                                         <td>{{ floor($workTimes[$employee->id]['hours']) }}</td>
                                         <td>{{ number_format($workTimes[$employee->id]['salary']) }} So'm</td>
                                     </tr>
