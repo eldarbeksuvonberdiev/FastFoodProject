@@ -11,18 +11,26 @@
                         <form wire:submit.prevent="storeEmployee">
                             <div class="row mb-3">
                                 <div class="col-12 mt-4">
-                                    <select class="form-select" wire:model="user_id" {{ count($users) > 0 ? '' : 'disabled'}}>
+                                    <select class="form-select" wire:model="user_id"
+                                        {{ count($users) > 0 ? '' : 'disabled' }}>
                                         @forelse ($users as $user)
-                                        <option value="{{ $user->id }}" {{ $user->id == $user_id ? 'selected' : '' }}>{{ $user->name }}</option>
+                                            @if (!$user->employee)
+                                                <option value="{{ $user->id }}"
+                                                    {{ $user->id == $user_id ? 'selected' : '' }}>{{ $user->name }}
+                                                </option>
+                                            @endif
                                         @empty
                                             <option selected>No Users</option>
                                         @endforelse
                                     </select>
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <select class="form-select" wire:model="department_id" {{ count($departments) > 0 ? '' : 'disabled'}}>
+                                    <select class="form-select" wire:model="department_id"
+                                        {{ count($departments) > 0 ? '' : 'disabled' }}>
                                         @forelse ($departments as $department)
-                                        <option value="{{ $department->id }}" {{ $department->id == $department_id ? 'selected' : '' }}>{{ $department->name }}</option>
+                                            <option value="{{ $department->id }}"
+                                                {{ $department->id == $department_id ? 'selected' : '' }}>
+                                                {{ $department->name }}</option>
                                         @empty
                                             <option selected>No Departments</option>
                                         @endforelse

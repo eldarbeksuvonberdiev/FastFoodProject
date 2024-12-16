@@ -114,6 +114,14 @@
                                 </span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/fixedSalary" wire:navigate class="nav-link">
+                                <i class="bi bi-card-checklist"></i>
+                                <span>
+                                    Fixed Salary
+                                </span>
+                            </a>
+                        </li>
                         @if (auth()->check())
                             <li class="nav-item">
                                 <a href="/logout" class="nav-link">
