@@ -10,7 +10,7 @@ class AttendanceEditComponent extends Component
 {
 
     //view variables
-    public $start_time, $end_time,$custom_start_time, $custom_end_time, $name, $id;
+    public $start_time, $end_time, $custom_start_time, $custom_end_time, $name, $id;
 
     public function mount(Attendance $attendance)
     {
