@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Attendance;
 use App\Models\Employee;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class FixedSalaryComponent extends Component
@@ -38,11 +39,22 @@ class FixedSalaryComponent extends Component
 
         $totalHours = $totalSeconds / 3600;
         // dd($totalHours,$employee->salary_amount / $employee->overall_work);
-        return ['hours' => $totalHours,'salary' => $totalHours * ($employee->salary_amount / $employee->overall_work)];
+        return ['hours' => $totalHours, 'salary' => $totalHours * ($employee->salary_amount / $employee->overall_work)];
     }
 
     public function render()
     {
         return view('livewire.admin.fixed-salary-component');
+    }
+
+    public function selectDate($date)
+    {
+        $this->month = Carbon::parse($date)->format('m');
+        $this->year = Carbon::parse($date)->format('Y');
+        $this->employees = Employee::all();
+        foreach ($this->employees as $employee) {
+            $this->workTimes[$employee->id] = $this->countWorkHours($employee);
+        }
+        // dd($date);
     }
 }

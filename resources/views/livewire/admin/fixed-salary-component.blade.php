@@ -5,12 +5,14 @@
                 <div class="row">
                     <div class="col-12 mt-3">
                         <h2><strong>Fixed Salary</strong></h2>
+                        <input type="date" class="form-control mt-3 mb-3" id="dateInput" name=""
+                            wire:change="selectDate($event.target.value)">
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Work Hours</th>
+                                    <th>Total Work Hours</th>
                                     <th>Salary amount</th>
                                 </tr>
                             </thead>
@@ -23,9 +25,9 @@
                                         <td>{{ number_format($workTimes[$employee->id]['salary']) }} So'm</td>
                                     </tr>
                                 @empty
-                                <tr>
-                                    <td colspan="4" align="center"></td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="4" align="center"></td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
