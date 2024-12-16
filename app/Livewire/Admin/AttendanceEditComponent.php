@@ -10,10 +10,12 @@ class AttendanceEditComponent extends Component
 {
 
     //view variables
-    public $start_time, $end_time, $name, $id;
+    public $start_time, $end_time,$custom_start_time, $custom_end_time, $name, $id;
 
     public function mount(Attendance $attendance)
     {
+        $this->custom_start_time = $attendance->employee->start_time;
+        $this->custom_end_time = $attendance->employee->end_time;
         $this->start_time = $attendance->start_time;
         $this->end_time = $attendance->end_time;
         $this->name = $attendance->user->name;

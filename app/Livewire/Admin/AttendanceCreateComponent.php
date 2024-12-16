@@ -10,11 +10,13 @@ use Livewire\Component;
 class AttendanceCreateComponent extends Component
 {
     //view variables
-    public $start_time, $end_time, $name, $employee, $date;
+    public $start_time, $end_time, $custom_start_time, $custom_end_time,$name, $employee, $date;
 
     public function mount(Employee $employee, $time) 
     {
         $this->employee = $employee;
+        $this->custom_start_time = $employee->start_time;
+        $this->custom_end_time = $employee->end_time;
         $this->date = $time;
         $this->name = $employee->user->name;
     }

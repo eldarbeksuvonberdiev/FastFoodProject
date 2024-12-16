@@ -14,6 +14,12 @@
                                     <input type="text" disabled wire:model="name" class="form-control">
                                 </div>
                                 <div class="col-12 mt-4">
+                                    <input type="time" wire:model="custom_start_time" class="form-control" id="timeInput3" disabled>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <input type="time" wire:model="custom_end_time" class="form-control" id="timeInput4" disabled>
+                                </div>
+                                <div class="col-12 mt-4">
                                     <input type="time" wire:model="start_time" class="form-control" id="timeInput3">
                                 </div>
                                 <div class="col-12 mt-4">
