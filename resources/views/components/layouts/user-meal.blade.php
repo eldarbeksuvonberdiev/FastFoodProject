@@ -78,6 +78,8 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="/order-progress" class="nav-link" style="margin-top:20px;">Statuses</a>
+                    </li>
                     <li class="nav-item active"><a href="/meal" class="nav-link" style="margin-top:20px;">Meal</a>
                     </li>
                     <li class="nav-item active"><a href="/user-meal" class="nav-link" style="margin-top:20px;">All</a>

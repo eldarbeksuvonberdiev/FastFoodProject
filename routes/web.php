@@ -14,6 +14,7 @@ use App\Livewire\Admin\MealComponent;
 use App\Livewire\Admin\OrderComponent;
 use App\Livewire\Admin\UserComponent;
 use App\Livewire\AuthComponent;
+use App\Livewire\User\OrderProgressComponent;
 use App\Livewire\User\UserMealComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,7 @@ Route::get('/employee-edit/{employee}', EditEmployeeComponent::class)->name('emp
 Route::get('/user-meal', UserMealComponent::class);
 Route::get('/byCategory/{category}', ByCategoryComponent::class);
 Route::get('/cart', CartComponent::class);
+Route::get('/order-progress', OrderProgressComponent::class);
 // });
 
 //Login

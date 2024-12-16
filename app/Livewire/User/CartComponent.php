@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class CartComponent extends Component
@@ -95,8 +96,9 @@ class CartComponent extends Component
         View::share(['categories' => $this->categories, 'cartCount' => $this->cartCount]);
     }
 
+    #[Layout('components.layouts.user-meal')]
     public function render()
     {
-        return view('livewire.user.cart-component')->layout('components.layouts.user-meal');
+        return view('livewire.user.cart-component');
     }
 }
