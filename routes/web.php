@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Livewire\Admin\AttendanceComponent;
 use App\Livewire\Admin\AttendanceEditComponent;
+use App\Livewire\Admin\AttendanceCreateComponent;
 use App\Livewire\User\ByCategoryComponent;
 use App\Livewire\User\CartComponent;
 use App\Livewire\Admin\CategoryComponent;
@@ -34,6 +35,7 @@ Route::get('/employee', EmployeeComponent::class)->name('employee');
 Route::get('/attendance', AttendanceComponent::class)->name('attendance');
 Route::get('/fixedSalary', FixedSalaryComponent::class)->name('fixedSalary');
 Route::get('/attendance-edit/{attendance}', AttendanceEditComponent::class)->name('attendance-edit');
+Route::get('/attendance-create/{employee}/{time}', AttendanceCreateComponent::class)->name('attendance-create');
 Route::get('/employee-create', EmployeeCreateComponent::class)->name('employee-create');
 Route::get('/employee-edit/{employee}', EditEmployeeComponent::class)->name('employee-edit');
 // });

@@ -57,6 +57,14 @@
 
                                                         {{ $startTimeMatches && $endTimeMatches ? '+' : '-' }}
                                                     </a>
+                                                @else
+                                                    <a wire:navigate
+                                                        href="/attendance-create/{{ $employee->id }}/{{ $day->format('Y-m-d') }}"
+                                                        style="width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;padding: 0;box-sizing: border-box;"
+                                                        class="text btn btn-secondary">
+
+                                                        <i class="bi bi-ban"></i>
+                                                    </a>
                                                 @endif
                                             </td>
                                         @endforeach

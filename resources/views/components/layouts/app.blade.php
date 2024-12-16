@@ -161,6 +161,12 @@
         document.getElementById('timeInput2').addEventListener('click', function() {
             this.showPicker(); // Vaqt tanlash oynasini ochadi
         });
+        document.getElementById('timeInput3').addEventListener('click', function() {
+            this.showPicker(); // Vaqt tanlash oynasini ochadi
+        });
+        document.getElementById('timeInput4').addEventListener('click', function() {
+            this.showPicker(); // Vaqt tanlash oynasini ochadi
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.x/dist/livewire-sortable.js"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
