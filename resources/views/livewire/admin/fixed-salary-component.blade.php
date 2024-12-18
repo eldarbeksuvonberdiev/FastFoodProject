@@ -31,10 +31,11 @@
                                         <td>{{ $employee->overall_work }}</td>
                                         <td>{{ floor($workTimes[$employee->id]['hours']) }}</td>
                                         <td>{{ number_format($workTimes[$employee->id]['salary']) }} So'm</td>
-                                        <td>{{ number_format($workTimes[$employee->id]['salary']) }} So'm</td>
-                                        <td>{{ number_format($workTimes[$employee->id]['salary']) }} So'm</td>
+                                        <td>{{ number_format($workTimes[$employee->id]['givenSalary']) }} So'm</td>
+                                        <td>{{ number_format($workTimes[$employee->id]['salary'] - $workTimes[$employee->id]['givenSalary']) }}
+                                            So'm</td>
                                         <td>
-                                            <a href="#" wire:navigate class="btn btn-primary">Give Salary</a>
+                                            <a href="/give-salary/{{ $employee->id }}" wire:navigate class="btn btn-primary">Give Salary</a>
                                         </td>
                                     </tr>
                                 @empty

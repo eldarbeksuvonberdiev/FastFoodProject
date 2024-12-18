@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Attendance;
 use App\Models\Employee;
+use App\Models\GivenSalary;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -31,16 +32,28 @@ class FixedSalaryComponent extends Component
             ->whereMonth('date', $this->month)
             ->whereYear('date', $this->year)
             ->get();
+
+        $givenSalaries = GivenSalary::where('employee_id', $employee->id)
+            ->whereMonth('given_date', $this->month)
+            ->whereYear('given_date', $this->year)
+            ->get();
+
+        $totalSalary = 0;
         $totalSeconds = 0;
+
         foreach ($attendances as $attendance) {
             $timeParts = explode(':', $attendance->overall_time);
             $seconds = ((int)$timeParts[0] * 3600) + ((int)$timeParts[1] * 60) + (int)$timeParts[2];
             $totalSeconds += $seconds;
         }
 
+        foreach ($givenSalaries as $givenSalary) {
+            $totalSalary += $givenSalary->given_amount;
+        }
         $totalHours = $totalSeconds / 3600;
+
         // dd($totalHours,$employee->salary_amount / $employee->overall_work);
-        return ['hours' => $totalHours, 'salary' => $totalHours * ($employee->salary_amount / $employee->overall_work)];
+        return ['hours' => $totalHours, 'salary' => $totalHours * ($employee->salary_amount / $employee->overall_work), 'givenSalary' => $totalSalary];
     }
 
     public function render()
