@@ -16,7 +16,10 @@
                                     <th>Salary amount(custom)</th>
                                     <th>Work hours(custom)</th>
                                     <th>Total Work Hours</th>
-                                    <th>Salary amount(In this month)</th>
+                                    <th>Salary amount(For this month)</th>
+                                    <th>Given Salary(For this month)</th>
+                                    <th>Remaining Salary(For this month)</th>
+                                    <th>Give Salary</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,6 +31,11 @@
                                         <td>{{ $employee->overall_work }}</td>
                                         <td>{{ floor($workTimes[$employee->id]['hours']) }}</td>
                                         <td>{{ number_format($workTimes[$employee->id]['salary']) }} So'm</td>
+                                        <td>{{ number_format($workTimes[$employee->id]['salary']) }} So'm</td>
+                                        <td>{{ number_format($workTimes[$employee->id]['salary']) }} So'm</td>
+                                        <td>
+                                            <a href="#" wire:navigate class="btn btn-primary">Give Salary</a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
