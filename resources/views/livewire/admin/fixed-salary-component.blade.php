@@ -35,9 +35,8 @@
                                         <td>{{ number_format($workTimes[$employee->id]['salary'] - $workTimes[$employee->id]['givenSalary']) }}
                                             So'm</td>
                                         <td>
-                                            <a href="/give-salary/{{ $employee->id }}/{{ $workTimes[$employee->id]['salary'] }}"
-                                                wire:navigate
-                                                class="btn btn-primary {{ $workTimes[$employee->id]['salary'] - $workTimes[$employee->id]['givenSalary'] >= 0 ? '' : 'disabled-link' }}">Give
+                                            <a href="/give-salary/{{ $employee->id }}/{{ $workTimes[$employee->id]['salary'] }}/{{ $date->format('Y-m-d') }}"
+                                                wire:navigate class="btn btn-primary">Give
                                                 Salary</a>
                                         </td>
                                     </tr>

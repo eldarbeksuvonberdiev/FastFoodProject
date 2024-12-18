@@ -11,9 +11,12 @@ class SalaryComponent extends Component
     //view variables
     public $employee, $name, $given_date, $given_amount, $amount, $salaryFor = 'fix';
 
-    public function mount(Employee $employee, $amount)
+    public function mount(Employee $employee, $amount, $date)
     {
         // dd($employee,round($amount));
+        
+        $this->given_date = $date;
+        // dd($this->given_date);
         $this->amount =  round($amount);
         $this->name = $employee->user->name;
         $this->employee = $employee;

@@ -35,7 +35,7 @@ Route::get('/department', DepartmentComponent::class)->name('department');
 Route::get('/employee', EmployeeComponent::class)->name('employee');
 Route::get('/attendance', AttendanceComponent::class)->name('attendance');
 Route::get('/fixedSalary', FixedSalaryComponent::class)->name('fixedSalary');
-Route::get('/give-salary/{employee}/{amount}', SalaryComponent::class)->name('giveSalary');
+Route::get('/give-salary/{employee}/{amount}/{date}', SalaryComponent::class)->name('giveSalary');
 Route::get('/attendance-edit/{attendance}', AttendanceEditComponent::class)->name('attendance-edit');
 Route::get('/attendance-create/{employee}/{time}', AttendanceCreateComponent::class)->name('attendance-create');
 Route::get('/employee-create', EmployeeCreateComponent::class)->name('employee-create');

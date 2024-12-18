@@ -27,7 +27,7 @@
                                         placeholder="Amount ">
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <input type="date" wire:model="given_date" class="form-control" id="dateInput">
+                                    <input type="date" wire:model="given_date" class="form-control" id="dateInput" disabled>
                                 </div>
                                 <div class="col-1 mt-4">
                                     <button type="submit" class="btn btn-success">Store</button>
